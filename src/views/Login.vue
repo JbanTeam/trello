@@ -37,7 +37,7 @@ export default {
     ...mapState('users', { loading: 'isCreatePending' })
   },
   methods: {
-    ...mapActions('auth', ['authenticate']),
+    ...mapActions('auth', ['authenticate', 'logout']),
     login() {
       if (this.valid) {
         this.authenticate({
@@ -45,7 +45,6 @@ export default {
           ...this.user
         })
           .then(() => {
-            console.log('logged in');
             this.$router.push('/boards');
           })
           .catch(err => {

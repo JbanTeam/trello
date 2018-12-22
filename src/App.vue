@@ -8,6 +8,12 @@
         <v-btn flat color="success" :to="{ name: 'signup' }">SignUp</v-btn>
       </v-toolbar-items>
       <v-toolbar-items v-if="user">
+        <v-layout justify-center align-center>
+          <h2>{{user.user.displayName}}</h2>
+          <v-avatar ml-3 size="40" color="pink">
+            <img :src="user.user.imageUrl" alt="alt">
+          </v-avatar>
+        </v-layout>
         <v-btn flat color="primary" @click="logout">LogOut</v-btn>
       </v-toolbar-items>
     </v-toolbar>

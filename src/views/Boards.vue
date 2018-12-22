@@ -64,13 +64,20 @@ export default {
     };
   },
   computed: {
+    ...mapState('auth', { user: 'payload' }),
     ...mapState('boards', {
       loading: 'isFindPending',
       creating: 'isCreatePending'
     }),
     ...mapGetters('boards', { findBoardsInStore: 'find' }),
     boards() {
-      return this.findBoardsInStore({ query: {} }).data;
+      return this.user
+        ? this.findBoardsInStore({
+            query: {
+              ownerId: this.user.userId
+            }
+          }).data
+        : [];
     }
   },
   methods: {
