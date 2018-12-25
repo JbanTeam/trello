@@ -1,25 +1,6 @@
 <template>
   <v-app>
-    <v-toolbar app>
-      <v-toolbar-title>
-        <v-btn flat :to="{ name: 'home' }">TrelloClone</v-btn>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-toolbar-items v-if="!user">
-        <v-btn flat color="success" :to="{ name: 'login' }">LogIn</v-btn>
-        <v-btn flat color="success" :to="{ name: 'signup' }">SignUp</v-btn>
-      </v-toolbar-items>
-      <v-toolbar-items v-if="user">
-        <v-layout justify-center align-center>
-          <h2>{{user.user.displayName}}</h2>
-          <v-avatar ml-3 size="40" color="pink">
-            <img :src="user.user.imageUrl" alt="alt">
-          </v-avatar>
-        </v-layout>
-        <v-btn flat color="primary" @click="logout">LogOut</v-btn>
-      </v-toolbar-items>
-    </v-toolbar>
-
+    <app-navbar :user="user" :logout="logout"></app-navbar>
     <v-content>
       <router-view></router-view>
     </v-content>
@@ -27,11 +8,12 @@
 </template>
 
 <script>
-// import { mapState, mapActions } from 'vuex';
 import { mapState, mapActions } from 'vuex';
+import AppNavbar from '@/components/AppNavbar';
 
 export default {
   name: 'App',
+  components: { AppNavbar },
   data() {
     return {
       //

@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import { notEmptyRules } from '@/validators';
 export default {
   name: 'create-card',
   props: ['listId', 'boardId', 'createActivity', 'user'],
@@ -31,7 +32,7 @@ export default {
         title: '',
         members: []
       },
-      notEmptyRules: [v => !!v || 'Cannot be empty']
+      notEmptyRules
     };
   },
   methods: {

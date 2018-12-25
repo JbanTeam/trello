@@ -1,15 +1,20 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import feathersVuex from 'feathers-vuex';
-import feathersClient from '../feathers-client';
-const { service, auth, FeathersVuex } = feathersVuex(feathersClient, {
-  idField: '_id'
-});
+
+import localAuth from './localAuth';
+import board from './board';
+import feathersVuex from './feathersVuex';
+
+const { service, auth, FeathersVuex } = feathersVuex;
 
 Vue.use(Vuex);
 Vue.use(FeathersVuex);
 
 export default new Vuex.Store({
+  modules: {
+    localAuth,
+    board
+  },
   plugins: [
     service('users', {
       instanceDefaults: {

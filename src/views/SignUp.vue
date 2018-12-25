@@ -35,6 +35,7 @@
 
 <script>
 import { mapState } from 'vuex';
+import { notEmptyRules } from '@/validators';
 export default {
   name: 'signUp',
   data(vm) {
@@ -47,7 +48,7 @@ export default {
         displayName: '',
         imageUrl: ''
       },
-      notEmptyRules: [val => !!val || 'Cannot be empty'],
+      notEmptyRules,
       confirmPasswordRules: [
         confirmPassword =>
           confirmPassword === vm.user.password || 'Password must match'
